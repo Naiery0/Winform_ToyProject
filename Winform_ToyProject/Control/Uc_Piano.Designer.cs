@@ -1,4 +1,4 @@
-﻿namespace Winform_ToyProject
+﻿namespace Winform_ToyProject.Control
 {
     partial class Uc_Piano
     {
@@ -38,7 +38,7 @@
             btn_PnCs = new DevExpress.XtraEditors.SimpleButton();
             btn_PnDs = new DevExpress.XtraEditors.SimpleButton();
             btn_PnFs = new DevExpress.XtraEditors.SimpleButton();
-            btn_PnGS = new DevExpress.XtraEditors.SimpleButton();
+            btn_PnGs = new DevExpress.XtraEditors.SimpleButton();
             btn_PnAs = new DevExpress.XtraEditors.SimpleButton();
             SuspendLayout();
             // 
@@ -159,16 +159,16 @@
             btn_PnFs.Text = " ";
             btn_PnFs.Click += PianoTileClick;
             // 
-            // btn_PnGS
+            // btn_PnGs
             // 
-            btn_PnGS.Appearance.BackColor = Color.Black;
-            btn_PnGS.Appearance.Options.UseBackColor = true;
-            btn_PnGS.Location = new Point(441, 0);
-            btn_PnGS.Name = "btn_PnGS";
-            btn_PnGS.Size = new Size(68, 313);
-            btn_PnGS.TabIndex = 11;
-            btn_PnGS.Text = " ";
-            btn_PnGS.Click += PianoTileClick;
+            btn_PnGs.Appearance.BackColor = Color.Black;
+            btn_PnGs.Appearance.Options.UseBackColor = true;
+            btn_PnGs.Location = new Point(441, 0);
+            btn_PnGs.Name = "btn_PnGs";
+            btn_PnGs.Size = new Size(68, 313);
+            btn_PnGs.TabIndex = 11;
+            btn_PnGs.Text = " ";
+            btn_PnGs.Click += PianoTileClick;
             // 
             // btn_PnAs
             // 
@@ -188,7 +188,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(btn_PnAs);
-            Controls.Add(btn_PnGS);
+            Controls.Add(btn_PnGs);
             Controls.Add(btn_PnFs);
             Controls.Add(btn_PnDs);
             Controls.Add(btn_PnCs);
@@ -217,7 +217,7 @@
         private DevExpress.XtraEditors.SimpleButton btn_PnCs;
         private DevExpress.XtraEditors.SimpleButton btn_PnDs;
         private DevExpress.XtraEditors.SimpleButton btn_PnFs;
-        private DevExpress.XtraEditors.SimpleButton btn_PnGS;
+        private DevExpress.XtraEditors.SimpleButton btn_PnGs;
         private DevExpress.XtraEditors.SimpleButton btn_PnAs;
     }
 }

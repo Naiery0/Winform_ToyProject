@@ -1,4 +1,6 @@
-﻿namespace Winform_ToyProject
+﻿using Winform_ToyProject.Control;
+
+namespace Winform_ToyProject
 {
     partial class MainForm
     {
@@ -37,7 +39,7 @@
             uc_Piano1.Appearance.Options.UseBackColor = true;
             uc_Piano1.Location = new Point(149, 12);
             uc_Piano1.Name = "uc_Piano1";
-            uc_Piano1.Size = new Size(663, 426);
+            uc_Piano1.Size = new Size(668, 426);
             uc_Piano1.TabIndex = 0;
             // 
             // MainForm
