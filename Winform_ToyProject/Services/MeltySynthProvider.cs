@@ -7,6 +7,11 @@ using System.Text;
 
 namespace Winform_ToyProject.Service
 {
+    /// <summary>
+    /// MeltySynth에서 추출한 데이터를 NAudio에 맞게 변환하기 위한 공급자(Provider)
+    /// MeltySynth : sf2 파일을 읽어 오디오 데이터 생성
+    /// NAudio : 오디오 입출력 라이브러리
+    /// </summary>
     public class MeltySynthProvider : ISampleProvider
     {
         private Synthesizer synthesizer;
@@ -33,13 +38,13 @@ namespace Winform_ToyProject.Service
                 leftBuffer = new float[frame];
                 rightBuffer = new float[frame];
             }
-            lock (synLock)
+            lock (synLock) 
             {
                 synthesizer.Render(leftBuffer.AsSpan(0,frame), rightBuffer.AsSpan(0,frame));
             }   
             for (int i = 0; i < frame; i++)
             {
-                // 이게 무슨 의미가 있는 코드인가 싶어 찾아봄
+                // 이게 무슨 의미가 있는 코드인가 싶어 찾아봄 (gemini가 알려준 코드인데)
                 // call by reference 처럼 보이는데 아니래;
                 // 아래 코드처럼 하면 원본값도 잘 바뀌지만, buffer = new float[num]; 여기서 하고 바꾸면 원본값은 안 바뀜
                 // 이런 걸 call by sharing 이라고 한다는데(Gemini 피셜) 이게 맞는 명칭인지는 나도 잘...

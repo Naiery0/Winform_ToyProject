@@ -19,24 +19,16 @@ namespace Winform_ToyProject.Control
 {
     public partial class Uc_Piano : DevExpress.XtraEditors.XtraUserControl
     {
-        Sounder sounder;
-        private const string PATH = @"Sound\Essential Keys-sforzando-v9.6.sf2";
+        private Sounder sounder = new Sounder();
+
         public Uc_Piano()
         {
-            sounder = new Sounder();
-            InitializeComponent();
-
-            var sf = new NAudio.SoundFont.SoundFont(Path.GetFullPath(PATH));
-            Console.WriteLine(sf);
-            //foreach (var preset in sf.Presets)
-            //{
-            //    Console.WriteLine($"Bank {preset.BankNumber}, Preset {preset.PatchNumber}: {preset.Name}");
-            //}
+            InitializeComponent(); 
         }
 
         private void PianoTileClick(Object sender, EventArgs e)
         {
-            sounder.PlayNote((sender as SimpleButton).Name.Substring(6));
+            sounder?.PlayNote((sender as SimpleButton).Name.Substring(6));
         }
     }
 }

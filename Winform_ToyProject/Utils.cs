@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Winform_ToyProject
 {
-    public static class Util
+    public static class Utils
     {
-
+        
     }
 }
