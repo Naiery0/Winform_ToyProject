@@ -45,7 +45,7 @@
             // 
             btn_Playback.Appearance.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_Playback.Appearance.Options.UseFont = true;
-            btn_Playback.Location = new Point(94, 228);
+            btn_Playback.Location = new Point(42, 227);
             btn_Playback.Name = "btn_Playback";
             btn_Playback.Size = new Size(106, 40);
             btn_Playback.TabIndex = 11;
@@ -56,7 +56,7 @@
             // 
             btn_PlayPiano.Appearance.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_PlayPiano.Appearance.Options.UseFont = true;
-            btn_PlayPiano.Location = new Point(94, 182);
+            btn_PlayPiano.Location = new Point(42, 181);
             btn_PlayPiano.Name = "btn_PlayPiano";
             btn_PlayPiano.Size = new Size(106, 40);
             btn_PlayPiano.TabIndex = 10;
@@ -67,7 +67,7 @@
             // 
             btn_Rank.Appearance.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_Rank.Appearance.Options.UseFont = true;
-            btn_Rank.Location = new Point(94, 136);
+            btn_Rank.Location = new Point(42, 135);
             btn_Rank.Name = "btn_Rank";
             btn_Rank.Size = new Size(106, 40);
             btn_Rank.TabIndex = 9;
@@ -78,7 +78,7 @@
             // 
             btn_GamePlay.Appearance.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_GamePlay.Appearance.Options.UseFont = true;
-            btn_GamePlay.Location = new Point(94, 90);
+            btn_GamePlay.Location = new Point(42, 89);
             btn_GamePlay.Name = "btn_GamePlay";
             btn_GamePlay.Size = new Size(106, 40);
             btn_GamePlay.TabIndex = 8;
@@ -92,7 +92,7 @@
             labelControl1.Appearance.Options.UseTextOptions = true;
             labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            labelControl1.Location = new Point(76, 27);
+            labelControl1.Location = new Point(22, 26);
             labelControl1.Name = "labelControl1";
             labelControl1.Size = new Size(143, 47);
             labelControl1.TabIndex = 7;
@@ -102,7 +102,7 @@
             // 
             uc_Piano2.Appearance.BackColor = Color.Transparent;
             uc_Piano2.Appearance.Options.UseBackColor = true;
-            uc_Piano2.Location = new Point(301, 90);
+            uc_Piano2.Location = new Point(190, 89);
             uc_Piano2.Name = "uc_Piano2";
             uc_Piano2.Size = new Size(521, 235);
             uc_Piano2.TabIndex = 6;
@@ -111,7 +111,7 @@
             // 
             btn_Setting.Appearance.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_Setting.Appearance.Options.UseFont = true;
-            btn_Setting.Location = new Point(94, 305);
+            btn_Setting.Location = new Point(42, 304);
             btn_Setting.Name = "btn_Setting";
             btn_Setting.Size = new Size(106, 40);
             btn_Setting.TabIndex = 12;
@@ -122,7 +122,7 @@
             // 
             btn_Exit.Appearance.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_Exit.Appearance.Options.UseFont = true;
-            btn_Exit.Location = new Point(94, 351);
+            btn_Exit.Location = new Point(42, 350);
             btn_Exit.Name = "btn_Exit";
             btn_Exit.Size = new Size(106, 40);
             btn_Exit.TabIndex = 13;
@@ -132,7 +132,7 @@
             // VolumeBar
             // 
             VolumeBar.EditValue = new DevExpress.XtraEditors.Repository.TrackBarRange(0, 0);
-            VolumeBar.Location = new Point(301, 346);
+            VolumeBar.Location = new Point(190, 345);
             VolumeBar.Name = "VolumeBar";
             VolumeBar.Properties.Appearance.BackColor = Color.Transparent;
             VolumeBar.Properties.Appearance.Options.UseBackColor = true;
@@ -157,7 +157,7 @@
             Controls.Add(labelControl1);
             Controls.Add(uc_Piano2);
             Name = "Uc_MainScreen";
-            Size = new Size(918, 460);
+            Size = new Size(730, 460);
             ((System.ComponentModel.ISupportInitialize)VolumeBar.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)VolumeBar).EndInit();
             ResumeLayout(false);

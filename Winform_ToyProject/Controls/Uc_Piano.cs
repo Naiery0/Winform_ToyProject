@@ -14,6 +14,7 @@ using NAudio.Wave;
 using NAudio.SoundFont;
 using MeltySynth;
 using Winform_ToyProject.Service;
+using DevExpress.XtraBars.Ribbon.Drawing;
 
 namespace Winform_ToyProject.Control
 {
@@ -23,12 +24,17 @@ namespace Winform_ToyProject.Control
 
         public Uc_Piano()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
 
         private void PianoTileClick(Object sender, EventArgs e)
         {
             sounder?.PlayNote((sender as SimpleButton).Name.Substring(6));
+        }
+
+        private void HoverEffect(Utils.Note note)
+        {
+
         }
     }
 }

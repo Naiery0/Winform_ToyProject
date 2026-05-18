@@ -7,14 +7,14 @@ namespace Winform_ToyProject.Screens
     public class PageManagement
     {
         #region instance
-        private static PageManagement? _instance;
+        private static PageManagement? instance;
         public static PageManagement Instance
         {
             get
             {
-                if (_instance == null)
-                    _instance = new PageManagement();
-                return _instance;
+                if (instance == null)
+                    instance = new PageManagement();
+                return instance;
             }
         }
         #endregion

@@ -46,20 +46,20 @@ namespace Winform_ToyProject
             xtraTabControl.Name = "xtraTabControl";
             xtraTabControl.SelectedTabPage = xtraTabPage1;
             xtraTabControl.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-            xtraTabControl.Size = new Size(918, 460);
+            xtraTabControl.Size = new Size(732, 462);
             xtraTabControl.TabIndex = 0;
             xtraTabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] { xtraTabPage1, xtraTabPage2 });
             // 
             // xtraTabPage1
             // 
             xtraTabPage1.Name = "xtraTabPage1";
-            xtraTabPage1.Size = new Size(916, 458);
+            xtraTabPage1.Size = new Size(730, 460);
             xtraTabPage1.Text = "xtraTabPage1";
             // 
             // xtraTabPage2
             // 
             xtraTabPage2.Name = "xtraTabPage2";
-            xtraTabPage2.Size = new Size(298, 269);
+            xtraTabPage2.Size = new Size(728, 458);
             xtraTabPage2.Text = "xtraTabPage2";
             // 
             // MainForm
@@ -67,10 +67,13 @@ namespace Winform_ToyProject
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(918, 460);
+            ClientSize = new Size(732, 462);
             Controls.Add(xtraTabControl);
+            Font = new Font("Segoe UI", 9F);
+            MaximizeBox = false;
             Name = "MainForm";
-            Text = "Form1";
+            SizeGripStyle = SizeGripStyle.Hide;
+            Text = "Toy Project";
             ((System.ComponentModel.ISupportInitialize)xtraTabControl).EndInit();
             xtraTabControl.ResumeLayout(false);
             ResumeLayout(false);

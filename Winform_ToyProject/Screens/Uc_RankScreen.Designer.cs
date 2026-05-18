@@ -60,7 +60,7 @@
             Controls.Add(btn_PageBack);
             Controls.Add(labelControl1);
             Name = "Uc_RankScreen";
-            Size = new Size(918, 460);
+            Size = new Size(730, 460);
             ResumeLayout(false);
         }
 
