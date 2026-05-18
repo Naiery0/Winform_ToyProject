@@ -59,7 +59,7 @@ namespace Winform_ToyProject
             // xtraTabPage2
             // 
             xtraTabPage2.Name = "xtraTabPage2";
-            xtraTabPage2.Size = new Size(728, 458);
+            xtraTabPage2.Size = new Size(730, 460);
             xtraTabPage2.Text = "xtraTabPage2";
             // 
             // MainForm
@@ -69,7 +69,7 @@ namespace Winform_ToyProject
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(732, 462);
             Controls.Add(xtraTabControl);
-            Font = new Font("Segoe UI", 9F);
+            IconOptions.ShowIcon = false;
             MaximizeBox = false;
             Name = "MainForm";
             SizeGripStyle = SizeGripStyle.Hide;
