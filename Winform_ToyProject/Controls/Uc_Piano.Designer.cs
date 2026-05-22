@@ -53,6 +53,7 @@
             btn_PnC.TabIndex = 0;
             btn_PnC.Text = " ";
             btn_PnC.Click += PianoTileClick;
+            btn_PnC.MouseHover += HoverEffect;
             // 
             // btn_PnD
             // 
@@ -65,6 +66,7 @@
             btn_PnD.TabIndex = 1;
             btn_PnD.Text = " ";
             btn_PnD.Click += PianoTileClick;
+            btn_PnD.MouseHover += HoverEffect;
             // 
             // btn_PnE
             // 
@@ -77,6 +79,7 @@
             btn_PnE.TabIndex = 2;
             btn_PnE.Text = " ";
             btn_PnE.Click += PianoTileClick;
+            btn_PnE.MouseHover += HoverEffect;
             // 
             // btn_PnF
             // 
@@ -89,6 +92,7 @@
             btn_PnF.TabIndex = 3;
             btn_PnF.Text = " ";
             btn_PnF.Click += PianoTileClick;
+            btn_PnF.MouseHover += HoverEffect;
             // 
             // btn_PnG
             // 
@@ -101,6 +105,7 @@
             btn_PnG.TabIndex = 4;
             btn_PnG.Text = " ";
             btn_PnG.Click += PianoTileClick;
+            btn_PnG.MouseHover += HoverEffect;
             // 
             // btn_PnB
             // 
@@ -113,6 +118,7 @@
             btn_PnB.TabIndex = 6;
             btn_PnB.Text = " ";
             btn_PnB.Click += PianoTileClick;
+            btn_PnB.MouseHover += HoverEffect;
             // 
             // btn_PnA
             // 
@@ -125,6 +131,7 @@
             btn_PnA.TabIndex = 5;
             btn_PnA.Text = " ";
             btn_PnA.Click += PianoTileClick;
+            btn_PnA.MouseHover += HoverEffect;
             // 
             // btn_PnCs
             // 
@@ -136,6 +143,7 @@
             btn_PnCs.TabIndex = 8;
             btn_PnCs.Text = " ";
             btn_PnCs.Click += PianoTileClick;
+            btn_PnCs.MouseHover += HoverEffect;
             // 
             // btn_PnDs
             // 
@@ -147,6 +155,7 @@
             btn_PnDs.TabIndex = 9;
             btn_PnDs.Text = " ";
             btn_PnDs.Click += PianoTileClick;
+            btn_PnDs.MouseHover += HoverEffect;
             // 
             // btn_PnFs
             // 
@@ -158,6 +167,7 @@
             btn_PnFs.TabIndex = 10;
             btn_PnFs.Text = " ";
             btn_PnFs.Click += PianoTileClick;
+            btn_PnFs.MouseHover += HoverEffect;
             // 
             // btn_PnGs
             // 
@@ -169,6 +179,7 @@
             btn_PnGs.TabIndex = 11;
             btn_PnGs.Text = " ";
             btn_PnGs.Click += PianoTileClick;
+            btn_PnGs.MouseHover += HoverEffect;
             // 
             // btn_PnAs
             // 
@@ -180,6 +191,7 @@
             btn_PnAs.TabIndex = 12;
             btn_PnAs.Text = " ";
             btn_PnAs.Click += PianoTileClick;
+            btn_PnAs.MouseHover += HoverEffect;
             // 
             // Uc_Piano
             // 

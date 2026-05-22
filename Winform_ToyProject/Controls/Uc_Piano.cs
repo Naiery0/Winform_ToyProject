@@ -27,14 +27,20 @@ namespace Winform_ToyProject.Control
             InitializeComponent();
         }
 
-        private void PianoTileClick(Object sender, EventArgs e)
+        private void PianoTileClick(object sender, EventArgs e)
         {
             sounder?.PlayNote((sender as SimpleButton).Name.Substring(6));
         }
 
-        private void HoverEffect(Utils.Note note)
+        private void HoverEffect(object sender, EventArgs e)
         {
+            if (sender is not SimpleButton btn)
+                return;
 
+            if (btn.BackColor == Color.White)
+                btn.BackColor = Color.LightGray;
+            else if (btn.BackColor == Color.Black)
+                btn.BackColor = Color.DarkGray;
         }
     }
 }
