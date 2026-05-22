@@ -24,15 +24,19 @@ namespace Winform_ToyProject.Screens
             Done
         }
         private GameStep gameStep = GameStep.Idle;
-        private CancellationTokenSource cts; // 비동기 작업 취소
+        private CancellationTokenSource? cts; // 비동기 작업 취소
 
         public Uc_GameScreen()
         {
             InitializeComponent();
+            TryInitScreen();
         }
 
         private bool TryInitScreen()
         {
+            if (cts == null)
+                cts = new CancellationTokenSource();
+
             if (cts.Token.IsCancellationRequested)
             {
                 btn_GameStart.Visible = true;
@@ -40,6 +44,7 @@ namespace Winform_ToyProject.Screens
                 lbl_Coment.Visible = false;
 
                 cts?.Dispose();
+                cts = null;
                 return true;
             }
             return false;
@@ -52,6 +57,7 @@ namespace Winform_ToyProject.Screens
             {
                 if (TryInitScreen())
                     return;
+
                 switch (gameStep)
                 {
                     case GameStep.Count:
@@ -89,7 +95,6 @@ namespace Winform_ToyProject.Screens
 
         private async void btn_GameStart_Click(object sender, EventArgs e)
         {
-            cts = new CancellationTokenSource();
             btn_GameStart.Visible = false;
 
             lbl_Test.Text = "Game Start!";

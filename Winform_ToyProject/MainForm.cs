@@ -32,7 +32,7 @@ namespace Winform_ToyProject
             xtraTabControl.TabPages.Add(page);
         }
 
-        public void TabChange(int index)
+        private void TabChange(int index)
         {
             xtraTabControl.SelectedTabPageIndex = index;
         }
