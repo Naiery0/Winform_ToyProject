@@ -18,26 +18,34 @@ namespace Winform_ToyProject.Screens
         public Uc_GameScreen()
         {
             InitializeComponent();
-            InitializeScreen();
         }
 
         private void InitializeScreen()
         {
             session = new GameSession();
+            session.TimerUpdated += Session_TimerUpdated;
 
+            btn_GameStart.Visible = true;
+            lbl_Coment.Visible = false;
+            lbl_Test.Text = "Game Start!";
         }
 
+        private void Session_TimerUpdated(string obj)
+        {
+            lbl_Coment.Text = $"{obj}";
+        }
 
         private async void btn_GameStart_Click(object sender, EventArgs e)
         {
             btn_GameStart.Visible = false;
-
+            lbl_Coment.Visible = true;
             lbl_Test.Text = "Game Start!";
-
+            await session.RunCountDownAsync();
             lbl_Test.Text = "Count Down Finished!";
         }
 
         private void btn_PageBack_Click(object sender, EventArgs e) => MainForm.Instance.TabChange(0);
+
 
         /// **sequence**
         /// start

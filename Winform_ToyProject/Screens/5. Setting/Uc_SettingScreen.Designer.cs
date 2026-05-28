@@ -39,7 +39,7 @@
             labelControl1.Appearance.Options.UseTextOptions = true;
             labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            labelControl1.Location = new Point(388, 207);
+            labelControl1.Location = new Point(380, 203);
             labelControl1.Name = "labelControl1";
             labelControl1.Size = new Size(143, 47);
             labelControl1.TabIndex = 9;

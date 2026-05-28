@@ -45,11 +45,11 @@ namespace Winform_ToyProject.Screens
                 await Task.Delay(100); // 게임 루프 간격 조절
             }
         }
-        private async Task RunCountDownAsync()
+        public async Task RunCountDownAsync()
         {
-            TimerUpdated?.Invoke("3");
             for (int count = 3; count > 0; count--)
             {
+                TimerUpdated?.Invoke(count.ToString());
                 await Task.Delay(1000);
                 TimerUpdated?.Invoke(count.ToString());
             }
