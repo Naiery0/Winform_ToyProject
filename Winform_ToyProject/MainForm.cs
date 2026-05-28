@@ -6,12 +6,25 @@ namespace Winform_ToyProject
 {
     public partial class MainForm : XtraForm
     {
-        public MainForm()
+
+        #region instance
+        private static MainForm? instance;
+        public static MainForm Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new MainForm();
+                return instance;
+            }
+        }
+        #endregion
+
+        protected MainForm()
         {
             InitializeComponent();
 
             xtraTabControl.TabPages.Clear();
-            PageManagement.Instance.OnPageChanged += (sender, index) => TabChange(index);
 
             InitView(new Uc_MainScreen());
             InitView(new Uc_GameScreen());
@@ -32,7 +45,7 @@ namespace Winform_ToyProject
             xtraTabControl.TabPages.Add(page);
         }
 
-        private void TabChange(int index)
+        public void TabChange(int index)
         {
             xtraTabControl.SelectedTabPageIndex = index;
         }

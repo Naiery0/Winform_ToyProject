@@ -11,7 +11,7 @@ namespace Winform_ToyProject.Service
 {
     public class Sounder
     {
-        private const string PATH = @"C:\Users\isac276\Desktop\GitHub Repository\Personal\Winform_ToyProject\Winform_ToyProject\Sound\Essential Keys-sforzando-v9.6.sf2";
+        private const string PATH = @"C:\Users\isac276\Desktop\Sound\Essential Keys-sforzando-v9.6.sf2";
         private Synthesizer synthesizer; // MeltySynth
         private SynthesizerSettings synthesizerSettings;
         private WaveOutEvent waveOut; // NAudio

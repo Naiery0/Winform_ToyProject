@@ -24,11 +24,11 @@ namespace Winform_ToyProject.Screens
 
             switch (btn.Name.Substring(4))
             {
-                case "GamePlay": PageManagement.Instance.ChangePage(1); break;
-                case "Rank": PageManagement.Instance.ChangePage(2); break;
-                case "PlayPiano": PageManagement.Instance.ChangePage(3); break;
-                case "Playback": PageManagement.Instance.ChangePage(4); break;
-                case "Setting": PageManagement.Instance.ChangePage(5); break; 
+                case "GamePlay": MainForm.Instance.TabChange(1); break;
+                case "Rank": MainForm.Instance.TabChange(2); break;
+                case "PlayPiano": MainForm.Instance.TabChange(3); break;
+                case "Playback": MainForm.Instance.TabChange(4); break;
+                case "Setting": MainForm.Instance.TabChange(5); break; 
                 case "Exit": Application.Exit(); break;
             }
         }

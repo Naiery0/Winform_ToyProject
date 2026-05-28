@@ -87,7 +87,7 @@
             lbl_Coment.Appearance.Options.UseTextOptions = true;
             lbl_Coment.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             lbl_Coment.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            lbl_Coment.Location = new Point(324, 370);
+            lbl_Coment.Location = new Point(323, 365);
             lbl_Coment.Name = "lbl_Coment";
             lbl_Coment.Size = new Size(105, 46);
             lbl_Coment.TabIndex = 14;

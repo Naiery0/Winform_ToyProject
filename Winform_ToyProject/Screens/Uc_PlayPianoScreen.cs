@@ -15,7 +15,7 @@ namespace Winform_ToyProject.Screens
         public Uc_PlayPianoScreen()
         {
             InitializeComponent();
-            btn_PageBack.Click += (sender, e) => PageManagement.Instance.ChangePage(0);
+            btn_PageBack.Click += (sender, e) => MainForm.Instance.TabChange(0);
         }
     }
 }
