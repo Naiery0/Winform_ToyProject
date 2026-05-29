@@ -71,10 +71,12 @@
             // 
             // btn_GameStart
             // 
+            btn_GameStart.AllowFocus = false;
             btn_GameStart.Appearance.Font = new Font("Segoe UI", 12F);
             btn_GameStart.Appearance.Options.UseFont = true;
             btn_GameStart.Location = new Point(304, 325);
             btn_GameStart.Name = "btn_GameStart";
+            btn_GameStart.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
             btn_GameStart.Size = new Size(142, 56);
             btn_GameStart.TabIndex = 13;
             btn_GameStart.Text = "Game Start";
@@ -96,20 +98,24 @@
             // 
             // btn_Pause
             // 
+            btn_Pause.AllowFocus = false;
             btn_Pause.Appearance.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_Pause.Appearance.Options.UseFont = true;
             btn_Pause.Appearance.Options.UseTextOptions = true;
             btn_Pause.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             btn_Pause.Location = new Point(682, 3);
             btn_Pause.Name = "btn_Pause";
+            btn_Pause.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
             btn_Pause.Size = new Size(45, 45);
             btn_Pause.TabIndex = 15;
             btn_Pause.Text = "||";
             // 
             // btn_PageBack
             // 
+            btn_PageBack.AllowFocus = false;
             btn_PageBack.Location = new Point(3, 3);
             btn_PageBack.Name = "btn_PageBack";
+            btn_PageBack.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
             btn_PageBack.Size = new Size(45, 45);
             btn_PageBack.TabIndex = 9;
             btn_PageBack.Text = "<-";
@@ -162,6 +168,7 @@
             Controls.Add(lbl_Coment);
             Name = "Uc_GameScreen";
             Size = new Size(730, 460);
+            VisibleChanged += Uc_GameScreen_VisibleChanged;
             ((System.ComponentModel.ISupportInitialize)pnl_Piano).EndInit();
             pnl_Piano.ResumeLayout(false);
             ResumeLayout(false);

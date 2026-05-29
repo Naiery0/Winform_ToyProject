@@ -20,7 +20,6 @@ namespace Winform_ToyProject.Control
 {
     public partial class Uc_Piano : DevExpress.XtraEditors.XtraUserControl
     {
-        private Sounder sounder = new Sounder();
 
         public Uc_Piano()
         {
@@ -29,8 +28,11 @@ namespace Winform_ToyProject.Control
 
         private void PianoTileClick(object sender, EventArgs e)
         {
-            sounder?.PlayNote((sender as SimpleButton).Name.Substring(6));
+            string note = (sender as SimpleButton).Name.Substring(6);
+
+            SoundManagement.Instance.PlayNote(Utils.StringToNote(note));
         }
+       
 
         private void HoverEffect(object sender, EventArgs e)
         {

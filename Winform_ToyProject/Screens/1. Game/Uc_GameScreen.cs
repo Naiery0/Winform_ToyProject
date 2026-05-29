@@ -23,7 +23,7 @@ namespace Winform_ToyProject.Screens
         private void InitializeScreen()
         {
             session = new GameSession();
-            session.TimerUpdated += Session_TimerUpdated;
+            session.ComentUpdated += Session_TimerUpdated;
 
             btn_GameStart.Visible = true;
             lbl_Coment.Visible = false;
@@ -40,12 +40,21 @@ namespace Winform_ToyProject.Screens
             btn_GameStart.Visible = false;
             lbl_Coment.Visible = true;
             lbl_Test.Text = "Game Start!";
-            await session.RunCountDownAsync();
+            await session.RunGameAsync();
             lbl_Test.Text = "Count Down Finished!";
         }
 
-        private void btn_PageBack_Click(object sender, EventArgs e) => MainForm.Instance.TabChange(0);
+        private void btn_PageBack_Click(object sender, EventArgs e)
+        {
+            session.cts?.Cancel();
+            MainForm.Instance.TabChange(0); 
+        }
 
+        private void Uc_GameScreen_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible)
+                InitializeScreen();
+        }
 
         /// **sequence**
         /// start

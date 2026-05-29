@@ -6,7 +6,6 @@ namespace Winform_ToyProject
 {
     public partial class MainForm : XtraForm
     {
-
         #region instance
         private static MainForm? instance;
         public static MainForm Instance
@@ -45,9 +44,6 @@ namespace Winform_ToyProject
             xtraTabControl.TabPages.Add(page);
         }
 
-        public void TabChange(int index)
-        {
-            xtraTabControl.SelectedTabPageIndex = index;
-        }
+        public void TabChange(int index) => xtraTabControl.SelectedTabPageIndex = index;
     }
 }
