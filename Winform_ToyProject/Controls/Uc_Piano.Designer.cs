@@ -236,7 +236,7 @@
             Controls.Add(btn_PnD);
             Controls.Add(btn_PnC);
             Name = "Uc_Piano";
-            Size = new Size(519, 220);
+            Size = new Size(518, 220);
             ResumeLayout(false);
 
         }

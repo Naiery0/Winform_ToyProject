@@ -15,6 +15,7 @@ namespace Winform_ToyProject.Screens
     public partial class Uc_GameScreen : XtraUserControl
     {
         GameSession session;
+
         public Uc_GameScreen()
         {
             InitializeComponent();
@@ -47,7 +48,7 @@ namespace Winform_ToyProject.Screens
         private void btn_PageBack_Click(object sender, EventArgs e)
         {
             session.cts?.Cancel();
-            MainForm.Instance.TabChange(0); 
+            MainForm.Instance.TabChange(0);
         }
 
         private void Uc_GameScreen_VisibleChanged(object sender, EventArgs e)

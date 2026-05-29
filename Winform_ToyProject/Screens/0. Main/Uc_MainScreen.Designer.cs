@@ -104,7 +104,7 @@
             uc_Piano2.Appearance.Options.UseBackColor = true;
             uc_Piano2.Location = new Point(190, 89);
             uc_Piano2.Name = "uc_Piano2";
-            uc_Piano2.Size = new Size(521, 235);
+            uc_Piano2.Size = new Size(518, 235);
             uc_Piano2.TabIndex = 6;
             // 
             // btn_Setting

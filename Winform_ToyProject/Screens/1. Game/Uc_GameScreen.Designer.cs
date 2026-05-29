@@ -36,10 +36,7 @@
             btn_Pause = new DevExpress.XtraEditors.SimpleButton();
             btn_PageBack = new DevExpress.XtraEditors.SimpleButton();
             lbl_Test = new Label();
-            pnl_Piano = new DevExpress.XtraEditors.PanelControl();
-            uc_Piano1 = new Winform_ToyProject.Control.Uc_Piano();
-            ((System.ComponentModel.ISupportInitialize)pnl_Piano).BeginInit();
-            pnl_Piano.SuspendLayout();
+            uc_Piano = new Winform_ToyProject.Control.Uc_Piano();
             SuspendLayout();
             // 
             // pnl_Heart1
@@ -131,25 +128,14 @@
             lbl_Test.Text = "Developer Test Label";
             lbl_Test.TextAlign = ContentAlignment.BottomRight;
             // 
-            // pnl_Piano
+            // uc_Piano
             // 
-            pnl_Piano.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            pnl_Piano.Controls.Add(uc_Piano1);
-            pnl_Piano.Enabled = false;
-            pnl_Piano.Location = new Point(112, 95);
-            pnl_Piano.Name = "pnl_Piano";
-            pnl_Piano.Size = new Size(521, 224);
-            pnl_Piano.TabIndex = 17;
-            // 
-            // uc_Piano1
-            // 
-            uc_Piano1.Appearance.BackColor = Color.Transparent;
-            uc_Piano1.Appearance.Options.UseBackColor = true;
-            uc_Piano1.Dock = DockStyle.Fill;
-            uc_Piano1.Location = new Point(0, 0);
-            uc_Piano1.Name = "uc_Piano1";
-            uc_Piano1.Size = new Size(521, 224);
-            uc_Piano1.TabIndex = 0;
+            uc_Piano.Appearance.BackColor = Color.Transparent;
+            uc_Piano.Appearance.Options.UseBackColor = true;
+            uc_Piano.Location = new Point(104, 99);
+            uc_Piano.Name = "uc_Piano";
+            uc_Piano.Size = new Size(518, 220);
+            uc_Piano.TabIndex = 17;
             // 
             // Uc_GameScreen
             // 
@@ -157,7 +143,7 @@
             Appearance.Options.UseBackColor = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(pnl_Piano);
+            Controls.Add(uc_Piano);
             Controls.Add(lbl_Test);
             Controls.Add(btn_Pause);
             Controls.Add(btn_GameStart);
@@ -169,8 +155,6 @@
             Name = "Uc_GameScreen";
             Size = new Size(730, 460);
             VisibleChanged += Uc_GameScreen_VisibleChanged;
-            ((System.ComponentModel.ISupportInitialize)pnl_Piano).EndInit();
-            pnl_Piano.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -184,7 +168,6 @@
         private DevExpress.XtraEditors.SimpleButton btn_Pause;
         private DevExpress.XtraEditors.SimpleButton btn_PageBack;
         private Label lbl_Test;
-        private DevExpress.XtraEditors.PanelControl pnl_Piano;
-        private Control.Uc_Piano uc_Piano1;
+        private Control.Uc_Piano uc_Piano;
     }
 }
