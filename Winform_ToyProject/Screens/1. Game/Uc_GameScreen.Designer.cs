@@ -35,8 +35,9 @@
             lbl_Coment = new DevExpress.XtraEditors.LabelControl();
             btn_Pause = new DevExpress.XtraEditors.SimpleButton();
             btn_PageBack = new DevExpress.XtraEditors.SimpleButton();
-            lbl_Test = new Label();
             uc_Piano = new Winform_ToyProject.Control.Uc_Piano();
+            pgb_Timer = new DevExpress.XtraEditors.ProgressBarControl();
+            ((System.ComponentModel.ISupportInitialize)pgb_Timer.Properties).BeginInit();
             SuspendLayout();
             // 
             // pnl_Heart1
@@ -118,16 +119,6 @@
             btn_PageBack.Text = "<-";
             btn_PageBack.Click += btn_PageBack_Click;
             // 
-            // lbl_Test
-            // 
-            lbl_Test.AutoSize = true;
-            lbl_Test.Location = new Point(85, 64);
-            lbl_Test.Name = "lbl_Test";
-            lbl_Test.Size = new Size(114, 15);
-            lbl_Test.TabIndex = 16;
-            lbl_Test.Text = "Developer Test Label";
-            lbl_Test.TextAlign = ContentAlignment.BottomRight;
-            // 
             // uc_Piano
             // 
             uc_Piano.Appearance.BackColor = Color.Transparent;
@@ -137,14 +128,22 @@
             uc_Piano.Size = new Size(518, 220);
             uc_Piano.TabIndex = 17;
             // 
+            // pgb_Timer
+            // 
+            pgb_Timer.Location = new Point(244, 341);
+            pgb_Timer.Name = "pgb_Timer";
+            pgb_Timer.Size = new Size(262, 18);
+            pgb_Timer.TabIndex = 18;
+            pgb_Timer.Visible = false;
+            // 
             // Uc_GameScreen
             // 
             Appearance.BackColor = Color.FromArgb(238, 238, 238);
             Appearance.Options.UseBackColor = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(pgb_Timer);
             Controls.Add(uc_Piano);
-            Controls.Add(lbl_Test);
             Controls.Add(btn_Pause);
             Controls.Add(btn_GameStart);
             Controls.Add(pnl_Heart3);
@@ -155,8 +154,8 @@
             Name = "Uc_GameScreen";
             Size = new Size(730, 460);
             VisibleChanged += Uc_GameScreen_VisibleChanged;
+            ((System.ComponentModel.ISupportInitialize)pgb_Timer.Properties).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -167,7 +166,7 @@
         private DevExpress.XtraEditors.LabelControl lbl_Coment;
         private DevExpress.XtraEditors.SimpleButton btn_Pause;
         private DevExpress.XtraEditors.SimpleButton btn_PageBack;
-        private Label lbl_Test;
         private Control.Uc_Piano uc_Piano;
+        private DevExpress.XtraEditors.ProgressBarControl pgb_Timer;
     }
 }

@@ -67,6 +67,14 @@ namespace Winform_ToyProject.Service
         //    synthesizer.ProcessMidiMessage(0, 0xC0, 0, 0); // PC 000 Yamaha C5 Grand 
         //}
 
+        public void RandomPlayNote()
+        {
+            Random random = new Random();
+            int randNum = random.Next() % 12;
+            int randOctave = random.Next() % 3 + 4; // 4, 5, 6 옥타브 중 랜덤 선택
+            PlayNote((Utils.Note)randNum, randOctave);
+        }
+
         public void Close()
         {
             waveOut?.Stop();

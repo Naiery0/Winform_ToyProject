@@ -6,8 +6,21 @@ using Winform_ToyProject.Service;
 
 namespace Winform_ToyProject.Screens
 {
-    public class GameSession
+    public class GameManagement
     {
+        #region instance
+        private static GameManagement? instance;
+        public static GameManagement Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new GameManagement();
+
+                return instance;
+            }
+        }
+        #endregion
         private enum GameStep
         {
             Count,
@@ -16,7 +29,6 @@ namespace Winform_ToyProject.Screens
             ExtraLifes,
             Done
         }
-        
         public event Action<string>? ComentUpdated;
         public event EventHandler? AnswerWaited;
         public CancellationTokenSource? cts;
@@ -26,19 +38,15 @@ namespace Winform_ToyProject.Screens
         private int lives = 3;
         private int nowNote = 0;
 
-
         #region Game worker
         public async Task RunGameAsync()
         {
-            if (cts is null)
-                cts = new CancellationTokenSource();
-
             while (true)
             {
                 switch (gameStep)
                 {
                     case GameStep.Count: await RunCountDownAsync(); break;
-                    case GameStep.PlayNote: await RandomPlayNoteAsync(); break; 
+                    case GameStep.PlayNote: await RandomPlayNoteAsync(); break;
                     case GameStep.ChoiceAnswer: await ChoiceAnswerAsync(); break;
                     //case GameStep.ExtraLifes: break;
                     case GameStep.Done: break;
@@ -53,12 +61,8 @@ namespace Winform_ToyProject.Screens
         {
             for (int count = 3; count > 0; count--)
             {
-                // 메인화면으로 갔으면 타이머 취소
-                if (cts.IsCancellationRequested)
-                {
-                    cts = null;
+                if (gameStep != GameStep.Count)
                     return;
-                }
 
                 ComentUpdated?.Invoke(count.ToString());
                 await Task.Delay(1000);
@@ -71,13 +75,7 @@ namespace Winform_ToyProject.Screens
         // STEP 2. PlayNote
         private async Task RandomPlayNoteAsync()
         {
-            Random random = new Random();
-            int randNum = random.Next() % 12;
-            int randOctave = random.Next() % 3 + 4; // 4, 5, 6 옥타브 중 랜덤 선택
-
-            nowNote = randNum;
-
-            SoundManagement.Instance.PlayNote((Utils.Note)randNum, randOctave);
+            SoundManagement.Instance.RandomPlayNote();
             ComentUpdated?.Invoke("Ding~");
             await Task.Delay(1500); // 노트가 재생되는 동안 잠시 대기
 
@@ -96,5 +94,10 @@ namespace Winform_ToyProject.Screens
         }
 
         #endregion
+
+        public void StepReset()
+        {
+            gameStep = GameStep.Count;
+        }
     }
 }

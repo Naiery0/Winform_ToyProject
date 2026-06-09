@@ -14,21 +14,17 @@ namespace Winform_ToyProject.Screens
 {
     public partial class Uc_GameScreen : XtraUserControl
     {
-        GameSession session;
-
         public Uc_GameScreen()
         {
             InitializeComponent();
+            GameManagement.Instance.ComentUpdated += Session_TimerUpdated;
         }
 
         private void InitializeScreen()
         {
-            session = new GameSession();
-            session.ComentUpdated += Session_TimerUpdated;
-
+            GameManagement.Instance.StepReset();
             btn_GameStart.Visible = true;
             lbl_Coment.Visible = false;
-            lbl_Test.Text = "Game Start!";
         }
 
         private void Session_TimerUpdated(string obj)
@@ -40,14 +36,12 @@ namespace Winform_ToyProject.Screens
         {
             btn_GameStart.Visible = false;
             lbl_Coment.Visible = true;
-            lbl_Test.Text = "Game Start!";
-            await session.RunGameAsync();
-            lbl_Test.Text = "Count Down Finished!";
+
+            await GameManagement.Instance.RunGameAsync();
         }
 
         private void btn_PageBack_Click(object sender, EventArgs e)
         {
-            session.cts?.Cancel();
             MainForm.Instance.TabChange(0);
         }
 
