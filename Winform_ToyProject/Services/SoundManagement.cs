@@ -25,11 +25,14 @@ namespace Winform_ToyProject.Service
             }
         }   
         #endregion
-
         private const string PATH = @"C:\Users\isac276\Desktop\Sound\Essential Keys-sforzando-v9.6.sf2";
         private Synthesizer synthesizer; // MeltySynth
         private SynthesizerSettings synthesizerSettings;
         private WaveOutEvent waveOut; // NAudio
+
+        private bool isMute = false;
+
+        public event Action<Utils.Note>? TileClicked;
 
         protected SoundManagement()
         {
@@ -51,11 +54,27 @@ namespace Winform_ToyProject.Service
         /// velocity: 음 세기 (0~127)
         /// 피아노의 경우 (A0~C8) => (21~108)
         /// </summary>
+        public void ClickNote(Utils.Note note, int octave = 4)
+        {
+            if (isMute)
+                return;
+
+            int key = 12 * (octave + 1) + (int)note;
+            synthesizer.NoteOn(0, key, 100);
+            TileClicked?.Invoke(note);
+        }
+
         public void PlayNote(Utils.Note note, int octave = 4)
         {
+            if (isMute)
+                return;
+
             int key = 12 * (octave + 1) + (int)note;
             synthesizer.NoteOn(0, key, 100);
         }
+
+        public void OnMute(bool isMute = true) => this.isMute = isMute;
+
 
         //public int NotetoKey(Utils.Note note, int octave = 4)
         //{
@@ -67,12 +86,14 @@ namespace Winform_ToyProject.Service
         //    synthesizer.ProcessMidiMessage(0, 0xC0, 0, 0); // PC 000 Yamaha C5 Grand 
         //}
 
-        public void RandomPlayNote()
+        public int[] RandomPlayNote()
         {
             Random random = new Random();
             int randNum = random.Next() % 12;
             int randOctave = random.Next() % 3 + 4; // 4, 5, 6 옥타브 중 랜덤 선택
             PlayNote((Utils.Note)randNum, randOctave);
+
+            return new int[] { randNum, randOctave };
         }
 
         public void Close()

@@ -20,9 +20,6 @@ namespace Winform_ToyProject.Control
 {
     public partial class Uc_Piano : DevExpress.XtraEditors.XtraUserControl
     {
-        // 무슨 음을 쳤는가
-        public event Action<Utils.Note>? TileClicked;
-
         public Uc_Piano()
         {
             InitializeComponent();
@@ -32,10 +29,9 @@ namespace Winform_ToyProject.Control
         {
             Utils.Note note = Utils.StringToNote((sender as SimpleButton).Name.Substring(6));
             
-            SoundManagement.Instance.PlayNote(note);
-            TileClicked?.Invoke(note);
+            SoundManagement.Instance.ClickNote(note);
         }
-       
+        
         private void HoverEffect(object sender, EventArgs e)
         {
             if (sender is not SimpleButton btn)
