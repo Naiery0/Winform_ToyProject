@@ -22,7 +22,8 @@ namespace Winform_ToyProject.Screens
 
         private void InitializeScreen()
         {
-            GameManagement.Instance.StepReset();
+            GameManagement.Instance.InitGame();
+
             btn_GameStart.Visible = true;
             lbl_Coment.Visible = false;
         }
@@ -43,6 +44,7 @@ namespace Winform_ToyProject.Screens
         private void btn_PageBack_Click(object sender, EventArgs e)
         {
             MainForm.Instance.TabChange(0);
+            GameManagement.Instance.CancelGame();
         }
 
         private void Uc_GameScreen_VisibleChanged(object sender, EventArgs e)
