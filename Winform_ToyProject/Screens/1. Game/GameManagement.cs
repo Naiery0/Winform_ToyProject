@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Winform_ToyProject.Control;
+using Winform_ToyProject.Screens._1._Game;
 using Winform_ToyProject.Service;
 
 namespace Winform_ToyProject.Screens
@@ -38,14 +39,15 @@ namespace Winform_ToyProject.Screens
         private CancellationTokenSource? answerCts;
         private GameStep gameStep = GameStep.Count;
 
-        private int[] note = new int[2];
-        private int score = 0;
-        private int lives = 3;
+        private int[] clickedNote = new int[2];
         private int nowNote = 0;
+
+        private GameModel model;
 
         #region Game worker
         public async Task RunGameAsync()
         {
+            model = new GameModel();
             while (true)
             {
                 switch (gameStep)
@@ -65,18 +67,18 @@ namespace Winform_ToyProject.Screens
                     return;
                 }
                 
-
                 if (gameStep == GameStep.Done)
                     gameStep = GameStep.Count; 
                 else
                     gameStep++;
 
-                if (lives <= 0)
+                if (model.Lives <= 0)
                 {
                     ComentUpdated?.Invoke("게임 오버!");
                     break;  
                 }
             }
+
         }
 
         // STEP 1. Play Note 전 타이머
@@ -108,8 +110,9 @@ namespace Winform_ToyProject.Screens
             try
             {
                 // 계이름, 옥타브
-                note = SoundManagement.Instance.RandomPlayNote();
+                clickedNote = SoundManagement.Instance.RandomPlayNote();
                 SoundManagement.Instance.OnMute();
+                Console.WriteLine(nowNote.ToString());
                 await Task.Delay(1500, gameCts.Token); // 노트가 재생되는 동안 잠시 대기
             }
             catch (Exception)
@@ -124,8 +127,6 @@ namespace Winform_ToyProject.Screens
             SoundManagement.Instance.OnMute(false);
             SoundManagement.Instance.TileClicked += OnTileClicked;
             
-            Console.WriteLine(nowNote);
-
             try
             {
                 int count = 5;
@@ -150,17 +151,17 @@ namespace Winform_ToyProject.Screens
         {
             try
             {
-                if (nowNote == note[0])
+                if (nowNote == clickedNote[0])
                 {
-                    score += 10;
+                    model.Score += 10;
                     ComentUpdated?.Invoke("정답!");
-                    ScoreUpdated?.Invoke(score.ToString());
+                    ScoreUpdated?.Invoke(model.Score.ToString());
                 }
                 else
                 {
-                    lives--;
+                    model.Lives--;
                     ComentUpdated?.Invoke("땡!");
-                    LivesUpdated?.Invoke(lives);
+                    LivesUpdated?.Invoke(model.Lives);
                 }
                 await Task.Delay(2000, gameCts.Token); // 대기
             }

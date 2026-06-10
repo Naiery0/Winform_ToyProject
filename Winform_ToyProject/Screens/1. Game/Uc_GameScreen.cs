@@ -14,10 +14,15 @@ namespace Winform_ToyProject.Screens
 {
     public partial class Uc_GameScreen : XtraUserControl
     {
+        private Panel[] LivesArr;
+
         public Uc_GameScreen()
         {
             InitializeComponent();
+            LivesArr = new Panel[] { pnl_Heart1, pnl_Heart2, pnl_Heart3 };
             GameManagement.Instance.ComentUpdated += Session_TimerUpdated;
+            GameManagement.Instance.LivesUpdated += OnUpdateLives;
+            GameManagement.Instance.ScoreUpdated += OnUpdateScore;
         }
 
         private void InitializeScreen()
@@ -51,6 +56,24 @@ namespace Winform_ToyProject.Screens
         {
             if (this.Visible)
                 InitializeScreen();
+        }
+
+        private void OnUpdateLives(int lives)
+        {
+            for (int i = 0; i < LivesArr.Length; i++)
+            {
+                LivesArr[i].Visible = i < lives;
+            }
+        }
+
+        private void OnUpdateScore(string score)
+        {
+            lbl_Score.Text = $"SCORE : {score}";
+        }
+
+        private void btn_Pause_Click(object sender, EventArgs e)
+        {
+            // TODO: 일시정지 기능 구현
         }
 
         /// **sequence**

@@ -37,6 +37,7 @@
             btn_PageBack = new DevExpress.XtraEditors.SimpleButton();
             uc_Piano = new Winform_ToyProject.Control.Uc_Piano();
             pgb_Timer = new DevExpress.XtraEditors.ProgressBarControl();
+            lbl_Score = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)pgb_Timer.Properties).BeginInit();
             SuspendLayout();
             // 
@@ -70,7 +71,7 @@
             // btn_GameStart
             // 
             btn_GameStart.AllowFocus = false;
-            btn_GameStart.Appearance.Font = new Font("Segoe UI", 12F);
+            btn_GameStart.Appearance.Font = new Font("Pretendard SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
             btn_GameStart.Appearance.Options.UseFont = true;
             btn_GameStart.Location = new Point(304, 325);
             btn_GameStart.Name = "btn_GameStart";
@@ -82,7 +83,7 @@
             // 
             // lbl_Coment
             // 
-            lbl_Coment.Appearance.Font = new Font("Segoe UI", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_Coment.Appearance.Font = new Font("Pretendard SemiBold", 15.75F, FontStyle.Bold);
             lbl_Coment.Appearance.Options.UseFont = true;
             lbl_Coment.Appearance.Options.UseTextOptions = true;
             lbl_Coment.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -107,6 +108,7 @@
             btn_Pause.Size = new Size(45, 45);
             btn_Pause.TabIndex = 15;
             btn_Pause.Text = "||";
+            btn_Pause.Click += btn_Pause_Click;
             // 
             // btn_PageBack
             // 
@@ -130,11 +132,25 @@
             // 
             // pgb_Timer
             // 
-            pgb_Timer.Location = new Point(244, 341);
+            pgb_Timer.Location = new Point(300, 341);
             pgb_Timer.Name = "pgb_Timer";
-            pgb_Timer.Size = new Size(262, 18);
+            pgb_Timer.Size = new Size(150, 18);
             pgb_Timer.TabIndex = 18;
             pgb_Timer.Visible = false;
+            // 
+            // lbl_Score
+            // 
+            lbl_Score.Appearance.Font = new Font("Pretendard SemiBold", 14F, FontStyle.Bold);
+            lbl_Score.Appearance.Options.UseFont = true;
+            lbl_Score.Appearance.Options.UseTextOptions = true;
+            lbl_Score.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            lbl_Score.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            lbl_Score.Location = new Point(100, 44);
+            lbl_Score.Name = "lbl_Score";
+            lbl_Score.Size = new Size(105, 46);
+            lbl_Score.TabIndex = 19;
+            lbl_Score.Text = "SCORE : 0";
+            lbl_Score.Visible = false;
             // 
             // Uc_GameScreen
             // 
@@ -142,6 +158,7 @@
             Appearance.Options.UseBackColor = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lbl_Score);
             Controls.Add(pgb_Timer);
             Controls.Add(uc_Piano);
             Controls.Add(btn_Pause);
@@ -168,5 +185,6 @@
         private DevExpress.XtraEditors.SimpleButton btn_PageBack;
         private Control.Uc_Piano uc_Piano;
         private DevExpress.XtraEditors.ProgressBarControl pgb_Timer;
+        private DevExpress.XtraEditors.LabelControl lbl_Score;
     }
 }
