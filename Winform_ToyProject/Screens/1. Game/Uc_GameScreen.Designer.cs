@@ -143,14 +143,13 @@
             lbl_Score.Appearance.Font = new Font("Pretendard SemiBold", 14F, FontStyle.Bold);
             lbl_Score.Appearance.Options.UseFont = true;
             lbl_Score.Appearance.Options.UseTextOptions = true;
-            lbl_Score.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            lbl_Score.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             lbl_Score.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            lbl_Score.Location = new Point(100, 44);
+            lbl_Score.Location = new Point(104, 44);
             lbl_Score.Name = "lbl_Score";
             lbl_Score.Size = new Size(105, 46);
             lbl_Score.TabIndex = 19;
             lbl_Score.Text = "SCORE : 0";
-            lbl_Score.Visible = false;
             // 
             // Uc_GameScreen
             // 

@@ -73,7 +73,8 @@ namespace Winform_ToyProject.Service
             synthesizer.NoteOn(0, key, 100);
         }
 
-        public void OnMute(bool isMute = true) => this.isMute = isMute;
+        public void OnMute() => this.isMute = true;
+        public void OffMute() => this.isMute = false;
 
 
         //public int NotetoKey(Utils.Note note, int octave = 4)

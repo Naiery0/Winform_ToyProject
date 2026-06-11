@@ -25,13 +25,6 @@ namespace Winform_ToyProject.Screens
             GameManagement.Instance.ScoreUpdated += OnUpdateScore;
         }
 
-        private void InitializeScreen()
-        {
-            GameManagement.Instance.InitGame();
-
-            btn_GameStart.Visible = true;
-            lbl_Coment.Visible = false;
-        }
 
         private void Session_TimerUpdated(string obj)
         {
@@ -55,7 +48,12 @@ namespace Winform_ToyProject.Screens
         private void Uc_GameScreen_VisibleChanged(object sender, EventArgs e)
         {
             if (this.Visible)
-                InitializeScreen();
+            {
+                GameManagement.Instance.InitGame();
+
+                btn_GameStart.Visible = true;
+                lbl_Coment.Visible = false;
+            }
         }
 
         private void OnUpdateLives(int lives)
