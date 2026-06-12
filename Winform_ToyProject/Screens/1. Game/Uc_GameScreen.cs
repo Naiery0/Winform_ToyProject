@@ -26,17 +26,24 @@ namespace Winform_ToyProject.Screens
             GameManagement.Instance.NameUpdated += OnUpdateName;
             GameManagement.Instance.LivesUpdated += OnUpdateLives;
             GameManagement.Instance.ScoreUpdated += OnUpdateScore;
+            GameManagement.Instance.TimerUpdated += OnUpdateProgressBar;
         }
 
-        private void Session_TimerUpdated(string obj)
+        private void OnUpdateProgressBar(int timer)
+        {
+            pgb_Timer.EditValue = timer;
+        }
+
+        private void Session_TimerUpdated(string count)
         { 
-            lbl_Coment.Text = $"{obj}";
+            lbl_Coment.Text = $"{count}";
         }
 
         private async void btn_GameStart_Click(object sender, EventArgs e)
         {
             btn_GameStart.Visible = false;
             lbl_Coment.Visible = true;
+            pgb_Timer.Visible = true;
 
             await GameManagement.Instance.RunGameAsync();
         }
@@ -51,6 +58,7 @@ namespace Winform_ToyProject.Screens
 
                 btn_GameStart.Visible = true;
                 lbl_Coment.Visible = false;
+                pgb_Timer.Visible = false;
             }
         }
 
@@ -76,7 +84,8 @@ namespace Winform_ToyProject.Screens
         {
             // 일시정지 기능 구현...은 좀 어려울지도... 됐네?
             GameManagement.Instance.PauseGame();
-            Uc_PauseMenu pauseMenu = new Uc_PauseMenu("Game");
+            FrmPauseMenu pauseForm = new FrmPauseMenu("Game");
+            pauseForm.ShowDialog();
         }
 
         private void btn_PageBack_Click(object sender, EventArgs e)

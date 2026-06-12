@@ -40,7 +40,7 @@
             FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmOverlay";
-            Opacity = 0.6D;
+            Opacity = 0.5D;
             ShowInTaskbar = false;
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.Manual;

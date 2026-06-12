@@ -46,7 +46,7 @@
             // 
             pnl_Heart1.BackgroundImage = Properties.Resources.heart;
             pnl_Heart1.BackgroundImageLayout = ImageLayout.Stretch;
-            pnl_Heart1.Location = new Point(484, 42);
+            pnl_Heart1.Location = new Point(484, 58);
             pnl_Heart1.Name = "pnl_Heart1";
             pnl_Heart1.Size = new Size(42, 38);
             pnl_Heart1.TabIndex = 10;
@@ -55,7 +55,7 @@
             // 
             pnl_Heart2.BackgroundImage = Properties.Resources.heart;
             pnl_Heart2.BackgroundImageLayout = ImageLayout.Stretch;
-            pnl_Heart2.Location = new Point(532, 42);
+            pnl_Heart2.Location = new Point(532, 58);
             pnl_Heart2.Name = "pnl_Heart2";
             pnl_Heart2.Size = new Size(42, 38);
             pnl_Heart2.TabIndex = 11;
@@ -64,7 +64,7 @@
             // 
             pnl_Heart3.BackgroundImage = Properties.Resources.heart;
             pnl_Heart3.BackgroundImageLayout = ImageLayout.Stretch;
-            pnl_Heart3.Location = new Point(580, 42);
+            pnl_Heart3.Location = new Point(580, 58);
             pnl_Heart3.Name = "pnl_Heart3";
             pnl_Heart3.Size = new Size(42, 38);
             pnl_Heart3.TabIndex = 12;
@@ -74,7 +74,7 @@
             btn_GameStart.AllowFocus = false;
             btn_GameStart.Appearance.Font = new Font("Pretendard SemiBold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 129);
             btn_GameStart.Appearance.Options.UseFont = true;
-            btn_GameStart.Location = new Point(304, 325);
+            btn_GameStart.Location = new Point(304, 341);
             btn_GameStart.Name = "btn_GameStart";
             btn_GameStart.ShowFocusRectangle = DevExpress.Utils.DefaultBoolean.False;
             btn_GameStart.Size = new Size(142, 56);
@@ -89,7 +89,7 @@
             lbl_Coment.Appearance.Options.UseTextOptions = true;
             lbl_Coment.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             lbl_Coment.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            lbl_Coment.Location = new Point(323, 365);
+            lbl_Coment.Location = new Point(323, 381);
             lbl_Coment.Name = "lbl_Coment";
             lbl_Coment.Size = new Size(105, 46);
             lbl_Coment.TabIndex = 14;
@@ -126,15 +126,18 @@
             // 
             uc_Piano.Appearance.BackColor = Color.Transparent;
             uc_Piano.Appearance.Options.UseBackColor = true;
-            uc_Piano.Location = new Point(104, 99);
+            uc_Piano.Location = new Point(104, 115);
             uc_Piano.Name = "uc_Piano";
             uc_Piano.Size = new Size(518, 220);
             uc_Piano.TabIndex = 17;
             // 
             // pgb_Timer
             // 
-            pgb_Timer.Location = new Point(300, 341);
+            pgb_Timer.Location = new Point(300, 357);
             pgb_Timer.Name = "pgb_Timer";
+            pgb_Timer.Properties.Appearance.BackColor = Color.White;
+            pgb_Timer.Properties.Maximum = 2000;
+            pgb_Timer.Properties.Step = 1;
             pgb_Timer.Size = new Size(150, 18);
             pgb_Timer.TabIndex = 18;
             pgb_Timer.Visible = false;
@@ -146,7 +149,7 @@
             lbl_Score.Appearance.Options.UseTextOptions = true;
             lbl_Score.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             lbl_Score.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            lbl_Score.Location = new Point(104, 44);
+            lbl_Score.Location = new Point(104, 60);
             lbl_Score.Name = "lbl_Score";
             lbl_Score.Size = new Size(105, 46);
             lbl_Score.TabIndex = 19;
@@ -159,7 +162,7 @@
             lbl_Name.Appearance.Options.UseTextOptions = true;
             lbl_Name.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             lbl_Name.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            lbl_Name.Location = new Point(103, 13);
+            lbl_Name.Location = new Point(103, 29);
             lbl_Name.Name = "lbl_Name";
             lbl_Name.Size = new Size(324, 46);
             lbl_Name.TabIndex = 20;

@@ -32,10 +32,15 @@ namespace Winform_ToyProject.Screens
             ExtraLifes,
             Done
         }
+
+        // 원활한 테스트를 위해 타이머 줄이기 (default: 0)
+        private const int DEVTIMER = 1;
+
         public event Action<string>? NameUpdated;
         public event Action<string>? ComentUpdated;
         public event Action<string>? ScoreUpdated;
         public event Action<int>? LivesUpdated;
+        public event Action<int>? TimerUpdated;
 
         private CancellationTokenSource? gameCts;
         private CancellationTokenSource? answerCts;
@@ -47,9 +52,6 @@ namespace Winform_ToyProject.Screens
         private int clickedNote;
 
         private UserModel? model;
-        
-        // 원활한 테스트를 위한 수작 (default: 0)
-        private int devTimer = 100;
 
         #region Game worker
         public async Task RunGameAsync()
@@ -102,12 +104,8 @@ namespace Winform_ToyProject.Screens
             {
                 for (int count = 3; count > 0; count--)
                 {
-                    if (gameCts.IsCancellationRequested)
-                        return;
-
                     ComentUpdated?.Invoke(count.ToString());
-
-                    await TaskWaitAsync(1000 / devTimer, gameCts);
+                    await TaskWaitAsync(800 / DEVTIMER, gameCts);
                 }
             }
             catch (Exception)
@@ -129,7 +127,7 @@ namespace Winform_ToyProject.Screens
                 
                 Debug.WriteLine($"quizNote: {quizNote[0]}, Octave: {quizNote[1]}");
 
-                await TaskWaitAsync(1500 / devTimer, gameCts);
+                await TaskWaitAsync(1100 / DEVTIMER, gameCts);
             }
             catch (Exception)
             {
@@ -146,16 +144,8 @@ namespace Winform_ToyProject.Screens
             SoundManagement.Instance.TileClicked += OnTileClicked;
 
             try
-            {
-                int count = 5;
-                while (count > 0)
-                {
-                    if (answerCts.IsCancellationRequested || gameCts.IsCancellationRequested)
-                        break;
-
-                    count--;
-                    await TaskWaitAsync(1000, answerCts);
-                }
+            {                
+                await TaskWaitAsync(2000, answerCts, true);
             }
             catch (Exception)
             {
@@ -181,7 +171,8 @@ namespace Winform_ToyProject.Screens
                     LivesUpdated?.Invoke(model.Lives);
                 }
 
-                await TaskWaitAsync(2000 / devTimer, gameCts);
+                await TaskWaitAsync(2000 / DEVTIMER, gameCts);
+                TimerUpdated?.Invoke(0);
             }
             catch (Exception)
             {
@@ -193,15 +184,28 @@ namespace Winform_ToyProject.Screens
         /// </summary>
         /// <param name="time">딜레이 시간</param>
         /// <param name="cts">사용할 취소 토큰</param>
+        /// <param name="isTimer">타이머 업데이트 여부</param>
         /// <returns></returns>
-        private async Task TaskWaitAsync(int time, CancellationTokenSource cts)
+        private async Task TaskWaitAsync(int time, CancellationTokenSource cts, bool isTimer = false)
         {
             int i = 0;
             while (i < time)
-            {
-                await Task.Delay(1, cts.Token);
-                i++;
+            {          
+                // 1ms로 쓰면 타이밍이 이상함
+                // TODO: 이부분은 좀더 고민을 해봐야 할듯
+                await Task.Delay(20, cts.Token);
+                i += 20;
                 
+                Debug.WriteLine($"Wait: {i}ms / {time}ms");
+
+                if (isTimer)
+                {
+                    if (gameCts.IsCancellationRequested)
+                        break;
+
+                    TimerUpdated?.Invoke(i);
+                }
+
                 await Task.Run(() => pauseEvent.Wait()); // 그냥 Wait 쓰면 프로그램이 멈춤
             }
         }
@@ -227,6 +231,7 @@ namespace Winform_ToyProject.Screens
             NameUpdated?.Invoke(model.Name);
             ScoreUpdated?.Invoke(model.Score.ToString());
             LivesUpdated?.Invoke(model.Lives);
+            TimerUpdated?.Invoke(0);
         }
 
         public void CancelGame()
@@ -240,6 +245,7 @@ namespace Winform_ToyProject.Screens
                 NameUpdated?.Invoke("");
                 ScoreUpdated?.Invoke("0");
                 LivesUpdated?.Invoke(3);
+                TimerUpdated?.Invoke(0);
             }
             catch (Exception)
             {}

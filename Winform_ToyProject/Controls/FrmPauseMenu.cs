@@ -7,24 +7,24 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Winform_ToyProject.Controls;
+using Winform_ToyProject.Screens;
 
-namespace Winform_ToyProject.Screens._1._Game
+namespace Winform_ToyProject.Controls
 {
-    public partial class Uc_PauseMenu : DevExpress.XtraEditors.XtraUserControl
+    public partial class FrmPauseMenu : DevExpress.XtraEditors.XtraForm
     {
-        private string pageName;
+        private string pageName = "";
         private FrmOverlay overlay;
-        public Uc_PauseMenu(string pageName)
+
+        public FrmPauseMenu(string pageName)
         {
             InitializeComponent();
             overlay = new FrmOverlay();
             overlay.ShowOverlay(MainForm.Instance);
 
-            this.Location = new Point((overlay.Width - this.Width) / 2, (overlay.Height - this.Height) / 2);
+            this.StartPosition = FormStartPosition.CenterParent;
             this.pageName = pageName;
-
-            overlay.Controls.Add(this);
+            this.TransparencyKey = Color.Black;
         }
 
         private void btn_Continue_Click(object sender, EventArgs e)
@@ -33,6 +33,7 @@ namespace Winform_ToyProject.Screens._1._Game
             {
                 case "Game":
                     GameManagement.Instance.ResumeGame();
+                    this.Close();
                     overlay.Close();
                     break;
             }
@@ -45,14 +46,10 @@ namespace Winform_ToyProject.Screens._1._Game
                 case "Game":
                     GameManagement.Instance.CancelGame();
                     MainForm.Instance.TabChange(0);
+                    this.Close();
                     overlay.Close();
                     break;
             }
-        }
-
-        private void Uc_PauseMenu_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
