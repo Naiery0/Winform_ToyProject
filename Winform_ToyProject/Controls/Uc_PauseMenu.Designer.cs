@@ -28,46 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            btn_Exit = new DevExpress.XtraEditors.SimpleButton();
+            btn_Continue = new DevExpress.XtraEditors.SimpleButton();
             SuspendLayout();
             // 
-            // simpleButton1
+            // btn_Exit
             // 
-            simpleButton1.Appearance.Font = new Font("Pretendard SemiBold", 14.25F, FontStyle.Bold);
-            simpleButton1.Appearance.Options.UseFont = true;
-            simpleButton1.Location = new Point(43, 115);
-            simpleButton1.Name = "simpleButton1";
-            simpleButton1.Size = new Size(146, 51);
-            simpleButton1.TabIndex = 0;
-            simpleButton1.Text = "메인화면";
+            btn_Exit.Appearance.BackColor = Color.FromArgb(64, 64, 64);
+            btn_Exit.Appearance.Font = new Font("Pretendard SemiBold", 14.25F, FontStyle.Bold);
+            btn_Exit.Appearance.Options.UseBackColor = true;
+            btn_Exit.Appearance.Options.UseFont = true;
+            btn_Exit.Location = new Point(43, 115);
+            btn_Exit.Name = "btn_Exit";
+            btn_Exit.Size = new Size(146, 51);
+            btn_Exit.TabIndex = 0;
+            btn_Exit.Text = "메인화면";
+            btn_Exit.Click += btn_Exit_Click;
             // 
-            // simpleButton2
+            // btn_Continue
             // 
-            simpleButton2.Appearance.Font = new Font("Pretendard SemiBold", 14.25F, FontStyle.Bold);
-            simpleButton2.Appearance.Options.UseFont = true;
-            simpleButton2.Location = new Point(43, 47);
-            simpleButton2.Name = "simpleButton2";
-            simpleButton2.Size = new Size(146, 51);
-            simpleButton2.TabIndex = 1;
-            simpleButton2.Text = "계속하기";
+            btn_Continue.Appearance.Font = new Font("Pretendard SemiBold", 14.25F, FontStyle.Bold);
+            btn_Continue.Appearance.Options.UseFont = true;
+            btn_Continue.Location = new Point(43, 47);
+            btn_Continue.Name = "btn_Continue";
+            btn_Continue.Size = new Size(146, 51);
+            btn_Continue.TabIndex = 1;
+            btn_Continue.Text = "계속하기";
+            btn_Continue.Click += btn_Continue_Click;
             // 
-            // Uc_GamePauseMenu
+            // Uc_PauseMenu
             // 
             Appearance.BackColor = Color.Transparent;
             Appearance.Options.UseBackColor = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(simpleButton2);
-            Controls.Add(simpleButton1);
-            Name = "Uc_GamePauseMenu";
+            Controls.Add(btn_Continue);
+            Controls.Add(btn_Exit);
+            Name = "Uc_PauseMenu";
             Size = new Size(230, 215);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private DevExpress.XtraEditors.SimpleButton btn_Exit;
+        private DevExpress.XtraEditors.SimpleButton btn_Continue;
     }
 }

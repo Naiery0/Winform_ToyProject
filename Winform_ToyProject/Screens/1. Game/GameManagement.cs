@@ -32,20 +32,23 @@ namespace Winform_ToyProject.Screens
             ExtraLifes,
             Done
         }
+        public event Action<string>? NameUpdated;
         public event Action<string>? ComentUpdated;
         public event Action<string>? ScoreUpdated;
         public event Action<int>? LivesUpdated;
 
         private CancellationTokenSource? gameCts;
         private CancellationTokenSource? answerCts;
+        // set(): Resume, Reset(): Pause
+        private ManualResetEventSlim pauseEvent = new ManualResetEventSlim(true);
         private GameStep gameStep = GameStep.Count;
 
         private int[] quizNote = new int[2];
         private int clickedNote;
 
-        private GameModel model;
+        private UserModel? model;
         
-        // 원활한 테스트를 위한 수작
+        // 원활한 테스트를 위한 수작 (default: 0)
         private int devTimer = 100;
 
         #region Game worker
@@ -81,9 +84,9 @@ namespace Winform_ToyProject.Screens
                 if (model.Lives <= 0)
                 {
                     FrmGameOver frmGameOver = new FrmGameOver(model.Score);
-
+                    
                     if (frmGameOver.ShowDialog(MainForm.Instance) == DialogResult.OK)
-                        InitGame();
+                        InitGame(model.Name);
                     else
                         return;
                 }
@@ -103,7 +106,8 @@ namespace Winform_ToyProject.Screens
                         return;
 
                     ComentUpdated?.Invoke(count.ToString());
-                    await Task.Delay(1000 / devTimer, gameCts.Token);
+
+                    await TaskWaitAsync(1000 / devTimer, gameCts);
                 }
             }
             catch (Exception)
@@ -123,9 +127,9 @@ namespace Winform_ToyProject.Screens
                 quizNote = SoundManagement.Instance.RandomPlayNote();
                 SoundManagement.Instance.OnMute();
                 
-                Debug.WriteLine($"quizNote: {quizNote[0]}, Octave: {quizNote[1]}"); 
-                
-                await Task.Delay(1500 / devTimer, gameCts.Token); // 노트가 재생되는 동안 잠시 대기
+                Debug.WriteLine($"quizNote: {quizNote[0]}, Octave: {quizNote[1]}");
+
+                await TaskWaitAsync(1500 / devTimer, gameCts);
             }
             catch (Exception)
             {
@@ -150,7 +154,7 @@ namespace Winform_ToyProject.Screens
                         break;
 
                     count--;
-                    await Task.Delay(1000, answerCts.Token);
+                    await TaskWaitAsync(1000, answerCts);
                 }
             }
             catch (Exception)
@@ -176,27 +180,51 @@ namespace Winform_ToyProject.Screens
                     ComentUpdated?.Invoke("땡!");
                     LivesUpdated?.Invoke(model.Lives);
                 }
-                await Task.Delay(2000 / devTimer, gameCts.Token); // 대기
+
+                await TaskWaitAsync(2000 / devTimer, gameCts);
             }
             catch (Exception)
             {
             }
         }
-        #endregion
+
+        /// <summary>
+        /// Pause 기능을 만들기 위해 생기게 된 메서드
+        /// </summary>
+        /// <param name="time">딜레이 시간</param>
+        /// <param name="cts">사용할 취소 토큰</param>
+        /// <returns></returns>
+        private async Task TaskWaitAsync(int time, CancellationTokenSource cts)
+        {
+            int i = 0;
+            while (i < time)
+            {
+                await Task.Delay(1, cts.Token);
+                i++;
+                
+                await Task.Run(() => pauseEvent.Wait()); // 그냥 Wait 쓰면 프로그램이 멈춤
+            }
+        }
 
         private void OnTileClicked(Utils.Note note)
         {
             clickedNote = (int)note;
             answerCts?.Cancel();
         }
+        #endregion
 
-        public void InitGame()
+        #region public methods
+        public void PauseGame() => pauseEvent.Reset();
+        public void ResumeGame() => pauseEvent.Set();
+
+        public void InitGame(string name)
         {
             gameCts?.Dispose();
             gameStep = GameStep.Count;
-            model = new GameModel();
+            model = new UserModel(name);
 
             // UI 초기화
+            NameUpdated?.Invoke(model.Name);
             ScoreUpdated?.Invoke(model.Score.ToString());
             LivesUpdated?.Invoke(model.Lives);
         }
@@ -207,9 +235,15 @@ namespace Winform_ToyProject.Screens
             {
                 gameCts?.Cancel();
                 SoundManagement.Instance.OffMute();
+
+                // UI 초기화
+                NameUpdated?.Invoke("");
+                ScoreUpdated?.Invoke("0");
+                LivesUpdated?.Invoke(3);
             }
             catch (Exception)
             {}
         }
+        #endregion
     }
 }

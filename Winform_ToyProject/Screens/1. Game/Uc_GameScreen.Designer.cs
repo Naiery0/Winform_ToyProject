@@ -38,6 +38,7 @@
             uc_Piano = new Winform_ToyProject.Control.Uc_Piano();
             pgb_Timer = new DevExpress.XtraEditors.ProgressBarControl();
             lbl_Score = new DevExpress.XtraEditors.LabelControl();
+            lbl_Name = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)pgb_Timer.Properties).BeginInit();
             SuspendLayout();
             // 
@@ -151,12 +152,26 @@
             lbl_Score.TabIndex = 19;
             lbl_Score.Text = "SCORE : 0";
             // 
+            // lbl_Name
+            // 
+            lbl_Name.Appearance.Font = new Font("Pretendard SemiBold", 14F, FontStyle.Bold);
+            lbl_Name.Appearance.Options.UseFont = true;
+            lbl_Name.Appearance.Options.UseTextOptions = true;
+            lbl_Name.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            lbl_Name.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            lbl_Name.Location = new Point(103, 13);
+            lbl_Name.Name = "lbl_Name";
+            lbl_Name.Size = new Size(324, 46);
+            lbl_Name.TabIndex = 20;
+            lbl_Name.Text = "Name : ";
+            // 
             // Uc_GameScreen
             // 
             Appearance.BackColor = Color.FromArgb(238, 238, 238);
             Appearance.Options.UseBackColor = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lbl_Name);
             Controls.Add(lbl_Score);
             Controls.Add(pgb_Timer);
             Controls.Add(uc_Piano);
@@ -185,5 +200,6 @@
         private Control.Uc_Piano uc_Piano;
         private DevExpress.XtraEditors.ProgressBarControl pgb_Timer;
         private DevExpress.XtraEditors.LabelControl lbl_Score;
+        private DevExpress.XtraEditors.LabelControl lbl_Name;
     }
 }

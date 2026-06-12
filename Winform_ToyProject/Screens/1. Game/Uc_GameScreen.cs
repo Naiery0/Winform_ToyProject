@@ -9,6 +9,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Winform_ToyProject.Controls;
+using Winform_ToyProject.Screens._1._Game;
 
 namespace Winform_ToyProject.Screens
 {
@@ -21,13 +23,13 @@ namespace Winform_ToyProject.Screens
             InitializeComponent();
             LivesArr = new Panel[] { pnl_Heart1, pnl_Heart2, pnl_Heart3 };
             GameManagement.Instance.ComentUpdated += Session_TimerUpdated;
+            GameManagement.Instance.NameUpdated += OnUpdateName;
             GameManagement.Instance.LivesUpdated += OnUpdateLives;
             GameManagement.Instance.ScoreUpdated += OnUpdateScore;
         }
 
-
         private void Session_TimerUpdated(string obj)
-        {
+        { 
             lbl_Coment.Text = $"{obj}";
         }
 
@@ -39,21 +41,22 @@ namespace Winform_ToyProject.Screens
             await GameManagement.Instance.RunGameAsync();
         }
 
-        private void btn_PageBack_Click(object sender, EventArgs e)
-        {
-            MainForm.Instance.TabChange(0);
-            GameManagement.Instance.CancelGame();
-        }
 
         private void Uc_GameScreen_VisibleChanged(object sender, EventArgs e)
         {
             if (this.Visible)
             {
-                GameManagement.Instance.InitGame();
+                FrmGameReady gameReady = new FrmGameReady();
+                GameManagement.Instance.InitGame(gameReady.ShowDialog(MainForm.Instance));
 
                 btn_GameStart.Visible = true;
                 lbl_Coment.Visible = false;
             }
+        }
+
+        private void OnUpdateName(string name)
+        {
+            lbl_Name.Text = $"Name : {name}";
         }
 
         private void OnUpdateLives(int lives)
@@ -71,17 +74,16 @@ namespace Winform_ToyProject.Screens
 
         private void btn_Pause_Click(object sender, EventArgs e)
         {
-            // TODO: 일시정지 기능 구현
+            // 일시정지 기능 구현...은 좀 어려울지도... 됐네?
+            GameManagement.Instance.PauseGame();
+            Uc_PauseMenu pauseMenu = new Uc_PauseMenu("Game");
         }
 
-        /// **sequence**
-        /// start
-        /// timer
-        /// play note
-        /// chioce answer
-        /// extra lifes
-        /// difficulty up or done
-
+        private void btn_PageBack_Click(object sender, EventArgs e)
+        {
+            MainForm.Instance.TabChange(0);
+            GameManagement.Instance.CancelGame();
+        }
     }
 }
 

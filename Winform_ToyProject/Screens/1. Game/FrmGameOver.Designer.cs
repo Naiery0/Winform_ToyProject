@@ -105,12 +105,14 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(265, 287);
+            ControlBox = false;
             Controls.Add(btn_Retry);
             Controls.Add(btn_Exit);
             Controls.Add(labelControl3);
             Controls.Add(lbl_Rank);
             Controls.Add(lbl_Score);
             IconOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("FrmGameOver.IconOptions.SvgImage");
+            MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
             Name = "FrmGameOver";

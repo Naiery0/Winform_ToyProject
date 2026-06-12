@@ -6,6 +6,8 @@ namespace Winform_ToyProject
 {
     public static class Utils
     {
+
+
         // 음계
         public enum Note
         {
@@ -19,6 +21,11 @@ namespace Winform_ToyProject
 
             else
                 return Note.None;
+        }
+
+        public static void Pause ()
+        {
+           
         }
     }
 }
