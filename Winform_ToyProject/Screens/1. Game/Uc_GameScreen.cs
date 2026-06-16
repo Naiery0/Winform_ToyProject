@@ -1,6 +1,7 @@
 ﻿using DevExpress.CodeParser;
 using DevExpress.XtraEditors;
 using DevExpress.XtraRichEdit.API.Layout;
+using DevExpress.XtraVerticalGrid.ViewInfo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,6 @@ namespace Winform_ToyProject.Screens
             LivesArr = new Panel[] { pnl_Heart1, pnl_Heart2, pnl_Heart3 };
             GameManagement.Instance.ComentUpdated += Session_TimerUpdated;
             GameManagement.Instance.NameUpdated += OnUpdateName;
-            GameManagement.Instance.LivesUpdated += OnUpdateLives;
             GameManagement.Instance.ScoreUpdated += OnUpdateScore;
             GameManagement.Instance.TimerUpdated += OnUpdateProgressBar;
         }
@@ -67,16 +67,13 @@ namespace Winform_ToyProject.Screens
             lbl_Name.Text = $"Name : {name}";
         }
 
-        private void OnUpdateLives(int lives)
+        private void OnUpdateScore(int lives, string score)
         {
             for (int i = 0; i < LivesArr.Length; i++)
             {
                 LivesArr[i].Visible = i < lives;
             }
-        }
 
-        private void OnUpdateScore(string score)
-        {
             lbl_Score.Text = $"SCORE : {score}";
         }
 

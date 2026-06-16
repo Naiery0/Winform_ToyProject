@@ -6,6 +6,7 @@ using System.Text;
 using Winform_ToyProject.Control;
 using Winform_ToyProject.Screens._1._Game;
 using Winform_ToyProject.Service;
+using Winform_ToyProject.Services;
 
 namespace Winform_ToyProject.Screens
 {
@@ -34,11 +35,11 @@ namespace Winform_ToyProject.Screens
         }
 
         // 원활한 테스트를 위해 타이머 줄이기 (default: 0)
-        private const int DEVTIMER = 1;
+        private const int DEVTIMER = 100;
 
         public event Action<string>? NameUpdated;
         public event Action<string>? ComentUpdated;
-        public event Action<string>? ScoreUpdated;
+        public event Action<int, string>? ScoreUpdated;
         public event Action<int>? LivesUpdated;
         public event Action<int>? TimerUpdated;
 
@@ -49,7 +50,7 @@ namespace Winform_ToyProject.Screens
         private GameStep gameStep = GameStep.Count;
 
         private int[] quizNote = new int[2];
-        private int clickedNote;
+        private int clickedNote = -1;
 
         private UserModel? model;
 
@@ -85,8 +86,12 @@ namespace Winform_ToyProject.Screens
 
                 if (model.Lives <= 0)
                 {
+                    // 랭킹 저장
+                    if (model.Score is not 0)
+                        FileManagement.Instance.WriteRank(model.Name, model.Score);
+
                     FrmGameOver frmGameOver = new FrmGameOver(model.Score);
-                    
+
                     if (frmGameOver.ShowDialog(MainForm.Instance) == DialogResult.OK)
                         InitGame(model.Name);
                     else
@@ -105,7 +110,7 @@ namespace Winform_ToyProject.Screens
                 for (int count = 3; count > 0; count--)
                 {
                     ComentUpdated?.Invoke(count.ToString());
-                    await TaskWaitAsync(800 / DEVTIMER, gameCts);
+                    await TaskWaitAsync(600 / DEVTIMER, gameCts);
                 }
             }
             catch (Exception)
@@ -127,7 +132,7 @@ namespace Winform_ToyProject.Screens
                 
                 Debug.WriteLine($"quizNote: {quizNote[0]}, Octave: {quizNote[1]}");
 
-                await TaskWaitAsync(1100 / DEVTIMER, gameCts);
+                await TaskWaitAsync(1000 / DEVTIMER, gameCts);
             }
             catch (Exception)
             {
@@ -138,7 +143,7 @@ namespace Winform_ToyProject.Screens
         private async Task ChoiceAnswerAsync()
         {
             answerCts = new CancellationTokenSource();
-            
+            clickedNote = -1;
             ComentUpdated?.Invoke("정답은?");
             SoundManagement.Instance.OffMute();
             SoundManagement.Instance.TileClicked += OnTileClicked;
@@ -162,16 +167,15 @@ namespace Winform_ToyProject.Screens
                 {
                     model.Score += 10;
                     ComentUpdated?.Invoke("정답!");
-                    ScoreUpdated?.Invoke(model.Score.ToString());
                 }
                 else
                 {
                     model.Lives--;
                     ComentUpdated?.Invoke("땡!");
-                    LivesUpdated?.Invoke(model.Lives);
                 }
+                ScoreUpdated?.Invoke(model.Lives, model.Score.ToString());
 
-                await TaskWaitAsync(2000 / DEVTIMER, gameCts);
+                await TaskWaitAsync(800 / DEVTIMER, gameCts);
                 TimerUpdated?.Invoke(0);
             }
             catch (Exception)
@@ -196,7 +200,7 @@ namespace Winform_ToyProject.Screens
                 await Task.Delay(20, cts.Token);
                 i += 20;
                 
-                Debug.WriteLine($"Wait: {i}ms / {time}ms");
+                //Debug.WriteLine($"Wait: {i}ms / {time}ms");
 
                 if (isTimer)
                 {
@@ -229,8 +233,7 @@ namespace Winform_ToyProject.Screens
 
             // UI 초기화
             NameUpdated?.Invoke(model.Name);
-            ScoreUpdated?.Invoke(model.Score.ToString());
-            LivesUpdated?.Invoke(model.Lives);
+            ScoreUpdated?.Invoke(model.Lives, model.Score.ToString());
             TimerUpdated?.Invoke(0);
         }
 
@@ -243,8 +246,7 @@ namespace Winform_ToyProject.Screens
 
                 // UI 초기화
                 NameUpdated?.Invoke("");
-                ScoreUpdated?.Invoke("0");
-                LivesUpdated?.Invoke(3);
+                ScoreUpdated?.Invoke(3, "0");
                 TimerUpdated?.Invoke(0);
             }
             catch (Exception)

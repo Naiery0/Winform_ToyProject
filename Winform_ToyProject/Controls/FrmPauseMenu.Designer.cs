@@ -36,12 +36,12 @@
             // 
             btn_Continue.Appearance.Font = new Font("Pretendard SemiBold", 14.25F, FontStyle.Bold);
             btn_Continue.Appearance.Options.UseFont = true;
-            btn_Continue.Location = new Point(52, 59);
+            btn_Continue.Location = new Point(12, 12);
             btn_Continue.Name = "btn_Continue";
             btn_Continue.Size = new Size(146, 51);
             btn_Continue.TabIndex = 3;
             btn_Continue.Text = "계속하기";
-            btn_Continue.Click += this.btn_Continue_Click;
+            btn_Continue.Click += btn_Continue_Click;
             // 
             // btn_Exit
             // 
@@ -49,7 +49,7 @@
             btn_Exit.Appearance.Font = new Font("Pretendard SemiBold", 14.25F, FontStyle.Bold);
             btn_Exit.Appearance.Options.UseBackColor = true;
             btn_Exit.Appearance.Options.UseFont = true;
-            btn_Exit.Location = new Point(52, 127);
+            btn_Exit.Location = new Point(12, 80);
             btn_Exit.Name = "btn_Exit";
             btn_Exit.Size = new Size(146, 51);
             btn_Exit.TabIndex = 2;
@@ -62,7 +62,7 @@
             Appearance.Options.UseBackColor = true;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(250, 237);
+            ClientSize = new Size(169, 143);
             Controls.Add(btn_Continue);
             Controls.Add(btn_Exit);
             FormBorderStyle = FormBorderStyle.None;
