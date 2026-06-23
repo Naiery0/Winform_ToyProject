@@ -60,8 +60,8 @@ namespace Winform_ToyProject.Services
             if (linkedlist.Count > 10)
                 linkedlist.RemoveLast();
 
-
             string fileString = string.Empty;
+
             foreach (var item in linkedlist)
                 fileString += $"{item.Keys.First()},{item.Values.First()}\n";
             
