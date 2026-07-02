@@ -14,6 +14,17 @@ namespace Winform_ToyProject
             C, Cs, D, Ds, E, F, Fs, G, Gs, A, As, B, None
         }
 
+        public enum Command
+        {
+            // 한 칸씩 컨트롤
+            OctaveUp, OctaveDown, 
+            VolumeUp, VolumeDown, 
+
+            Record, RecordEnd, 
+
+            None
+        }
+
         public static Note StringToNote(string str)
         {
             if(Enum.TryParse(str, out Note result) && Enum.IsDefined(typeof(Note), result))

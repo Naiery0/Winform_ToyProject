@@ -10,6 +10,7 @@ using System.Text;
 
 namespace Winform_ToyProject.Service
 {
+    // 얘도 사용할 곳마다 클래스를 새로 만드는 게 맞지 않았을까?
     public class SoundManagement
     {
         #region instance
@@ -31,7 +32,9 @@ namespace Winform_ToyProject.Service
         private WaveOutEvent waveOut; // NAudio
 
         private bool isMute = false;
+        private int velocity = 100; // 음 세기 (0~127)
 
+        public int Volume { get => velocity; set => SetVelocity(value);}
         public event Action<Utils.Note>? TileClicked;
 
         protected SoundManagement()
@@ -46,6 +49,8 @@ namespace Winform_ToyProject.Service
             waveOut.Init(new MeltySynthProvider(synthesizer, new object()));
             waveOut.Play();
         }
+        private void SetVelocity(int velocity) => this.velocity = Math.Clamp(velocity, 0, 127);
+
 
         /// <summary>
         /// NoteOn(channel, noteNumber, velocity)
@@ -58,20 +63,29 @@ namespace Winform_ToyProject.Service
         {
             if (isMute)
                 return;
-
-            int key = 12 * (octave + 1) + (int)note;
-            synthesizer.NoteOn(0, key, 100);
+            PlayNote(note, octave);
             TileClicked?.Invoke(note);
         }
 
-        public void PlayNote(Utils.Note note, int octave = 4)
+        public void PlayNote(Utils.Note note, int octave = 4, int velocity = -1)
         {
             if (isMute)
                 return;
 
+            if (velocity == -1)
+                velocity = this.velocity;
+
             int key = 12 * (octave + 1) + (int)note;
-            synthesizer.NoteOn(0, key, 100);
+            synthesizer.NoteOn(0, key, velocity);
         }
+        public void StopNote(Utils.Note note, int octave = 4)
+        {
+            int key = 12 * (octave + 1) + (int)note;
+            synthesizer.NoteOff(0, key);
+        }
+
+        public void VolumeUp() => SetVelocity(++velocity);
+        public void VolumeDown() => SetVelocity(--velocity);
 
         public void OnMute() => this.isMute = true;
         public void OffMute() => this.isMute = false;

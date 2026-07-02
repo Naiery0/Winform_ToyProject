@@ -70,6 +70,7 @@ namespace Winform_ToyProject
             ClientSize = new Size(732, 462);
             Controls.Add(xtraTabControl);
             IconOptions.ShowIcon = false;
+            KeyPreview = true;
             MaximizeBox = false;
             Name = "MainForm";
             SizeGripStyle = SizeGripStyle.Hide;

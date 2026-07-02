@@ -48,12 +48,14 @@ namespace Winform_ToyProject.Services
                 }
             }
 
+            // 처음 쓰면
             if (linkedlist.Count is 0)
             {
                 linkedlist.AddFirst(playerInfo);
                 isWritten = true;
             }
 
+            // 랭킹 갱신 없으면
             if (!isWritten)
                 return;
 

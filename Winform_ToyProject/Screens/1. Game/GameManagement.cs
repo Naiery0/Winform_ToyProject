@@ -12,6 +12,7 @@ namespace Winform_ToyProject.Screens
 {
     public class GameManagement
     {
+        // 사실 판 당 1세션을 두는 게 맞지 않았을까?
         #region instance
         private static GameManagement? instance;
         public static GameManagement Instance
@@ -35,7 +36,7 @@ namespace Winform_ToyProject.Screens
         }
 
         // 원활한 테스트를 위해 타이머 줄이기 (default: 0)
-        private const int DEVTIMER = 100;
+        private const int DEVTIMER = 1;
 
         public event Action<string>? NameUpdated;
         public event Action<string>? ComentUpdated;
