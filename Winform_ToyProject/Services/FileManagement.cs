@@ -104,5 +104,13 @@ namespace Winform_ToyProject.Services
             return rankDictList;
         }
 
+        internal void SaveRecord(string title, string data)
+        {
+            string filePath = $"{BASE_PATH}{title}.txt";
+            if (!Directory.Exists(BASE_PATH))
+                Directory.CreateDirectory(BASE_PATH);
+
+            File.WriteAllText(filePath, data);
+        }
     }
 }

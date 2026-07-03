@@ -1,5 +1,6 @@
 ﻿using DevExpress.Utils.DPI;
 using DevExpress.XtraEditors;
+using DevExpress.XtraRichEdit;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Winform_ToyProject.Screens._3._PlayPiano;
 using Winform_ToyProject.Service;
 
 namespace Winform_ToyProject.Screens
@@ -16,12 +18,18 @@ namespace Winform_ToyProject.Screens
     {
         private const int MIN_OCTAVE = 1;
         private const int MAX_OCTAVE = 7;
-
-        private int octave = 4;
+        private const int MIN_VOLUME = 0;
+        private const int MAX_VOLUME = 127;
 
         private readonly Dictionary<Keys, (Utils.Note note, int octave)> keyMap = new();
         private readonly Dictionary<Keys, Utils.Command> commandMap = new();
         private readonly HashSet<Keys> pressedKeys = new();
+
+        private int octave = 4;
+        private int velocity;
+        private bool isRecording = false;
+
+        private Recorder? recorder = null;
 
         public Uc_PlayPianoScreen()
         {
@@ -29,14 +37,22 @@ namespace Winform_ToyProject.Screens
 
             btn_PageBack.Click += (sender, e) => MainForm.Instance.TabChange(0);
 
-            BuildKeyMap();
-
             // 키 입력 받기 위해 포커스 유지
             this.TabStop = true;
             this.Load += (_, __) => this.Focus();
             this.Click += (_, __) => this.Focus();
             this.MouseDown += (_, __) => this.Focus();
             uc_Piano1.MouseDown += (_, __) => this.Focus();
+
+            InitPiano();
+        }
+        private void InitPiano()
+        {
+            BuildKeyMap();
+            velocity = SoundManagement.Instance.Volume;
+            octave = 4;
+            tbc_Volume.Value = velocity;
+            tbc_Octave.Value = octave;
         }
 
         private void BuildKeyMap()
@@ -90,21 +106,21 @@ namespace Winform_ToyProject.Screens
 
         protected override bool ProcessKeyPreview(ref Message m)
         {
-            const int WM_KEYDOWN = 0x0100;
-            const int WM_KEYUP = 0x0101;
-            const int WM_SYSKEYDOWN = 0x0104;
-            const int WM_SYSKEYUP = 0x0105;
+            const int KEYDOWN = 0x0100;
+            const int KEYUP = 0x0101;
+            const int SYSKEYDOWN = 0x0104;
+            const int SYSKEYUP = 0x0105;
 
             Keys keyData = (Keys)(int)m.WParam;
-            var e = new KeyEventArgs(keyData);
+            KeyEventArgs e = new KeyEventArgs(keyData);
 
-            if (m.Msg == WM_KEYDOWN || m.Msg == WM_SYSKEYDOWN)
+            if (m.Msg == KEYDOWN || m.Msg == SYSKEYDOWN)
             {
                 Uc_PlayPianoScreen_KeyDown(this, e);
                 if (e.Handled)
                     return true;
             }
-            else if (m.Msg == WM_KEYUP || m.Msg == WM_SYSKEYUP)
+            else if (m.Msg == KEYUP || m.Msg == SYSKEYUP)
             {
                 Uc_PlayPianoScreen_KeyUp(this, e);
                 if (e.Handled)
@@ -130,7 +146,7 @@ namespace Winform_ToyProject.Screens
             if (!pressedKeys.Add(e.KeyCode))
                 return; // 키 반복 입력 방지
 
-            SoundManagement.Instance.PlayNote(mapped.note, mapped.octave);
+            SoundManagement.Instance.PlayNote(mapped.note, mapped.octave, velocity);
             e.Handled = true;
             e.SuppressKeyPress = true;
         }
@@ -169,25 +185,63 @@ namespace Winform_ToyProject.Screens
                     }
                     break;
                 case Utils.Command.VolumeUp:
-                    SoundManagement.Instance.VolumeUp();
-                    tbc_Volume.Value = SoundManagement.Instance.Volume;
+                    if (velocity < MAX_VOLUME)
+                    {
+                        velocity++;
+                        tbc_Volume.Value = velocity;
+                    }
                     break;
                 case Utils.Command.VolumeDown:
-                    SoundManagement.Instance.VolumeDown();
-                    tbc_Volume.Value = SoundManagement.Instance.Volume;
+                    if (velocity > MIN_VOLUME)
+                    {
+                        velocity--;
+                        tbc_Volume.Value = velocity;
+                    }
                     break;
             }
         }
 
         private void tbc_Volume_ValueChanged(object sender, EventArgs e)
         {
-            SoundManagement.Instance.Volume = tbc_Volume.Value;
+            velocity = tbc_Volume.Value;
         }
 
         private void tbc_Octave_ValueChanged(object sender, EventArgs e)
         {
             this.octave = tbc_Octave.Value;
             BuildKeyMap();
+        }
+
+        private void btn_Record_Click(object sender, EventArgs e)
+        {
+            if (isRecording)
+                RecordStart();
+            else
+                RecordStop();
+        }
+
+        private void RecordStop()
+        {
+            recorder?.Stop();
+            recorder = null;    
+            isRecording = false;
+            btn_Record.Text = "Record ●";
+            btn_Record.BackColor = Color.White;
+        }
+
+        private void RecordStart()
+        {
+            isRecording = true;
+            btn_Record.Text = "Stop ■";
+            btn_Record.BackColor = Color.LightGray;
+        }
+
+        private void OpenTitleDialog()
+        {
+            string title = string.Empty;
+
+
+            recorder = new Recorder($"{title}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}");
         }
     }
 }

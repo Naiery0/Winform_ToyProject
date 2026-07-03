@@ -34,7 +34,7 @@ namespace Winform_ToyProject.Service
         private bool isMute = false;
         private int velocity = 100; // 음 세기 (0~127)
 
-        public int Volume { get => velocity; set => SetVelocity(value);}
+        public int Volume { get => velocity; set => SetVoulme(value);}
         public event Action<Utils.Note>? TileClicked;
 
         protected SoundManagement()
@@ -49,8 +49,7 @@ namespace Winform_ToyProject.Service
             waveOut.Init(new MeltySynthProvider(synthesizer, new object()));
             waveOut.Play();
         }
-        private void SetVelocity(int velocity) => this.velocity = Math.Clamp(velocity, 0, 127);
-
+        
 
         /// <summary>
         /// NoteOn(channel, noteNumber, velocity)
@@ -83,9 +82,9 @@ namespace Winform_ToyProject.Service
             int key = 12 * (octave + 1) + (int)note;
             synthesizer.NoteOff(0, key);
         }
-
-        public void VolumeUp() => SetVelocity(++velocity);
-        public void VolumeDown() => SetVelocity(--velocity);
+        public void SetVoulme(int velocity) => this.velocity = Math.Clamp(velocity, 0, 127);
+        //public void VolumeUp() => SetVoulme(++velocity);
+        //public void VolumeDown() => SetVoulme(--velocity);
 
         public void OnMute() => this.isMute = true;
         public void OffMute() => this.isMute = false;

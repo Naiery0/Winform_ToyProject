@@ -34,9 +34,5 @@ namespace Winform_ToyProject
                 return Note.None;
         }
 
-        public static void Pause ()
-        {
-           
-        }
     }
 }
